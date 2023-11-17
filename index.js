@@ -5,6 +5,9 @@ config();
 const App = express();
 App.use(express.json({ limit: "10mb" }));
 App.use('/',userRoutes)
+App.get("/", async (req, res) => {
+  res.send("new update from github");
+});
 const PORT = process.env.PORT || 3000;
  App.listen(PORT, () => {
     console.log(`the server is running  ${PORT}`);
