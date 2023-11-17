@@ -1,8 +1,9 @@
 import express from 'express';
 import { StreamChat } from "stream-chat";
-
-
+import dotenv from "dotenv";
+dotenv.config();
 const Router = express.Router();
+
 const streamChat = StreamChat.getInstance(
   process.env.STREAM_API_KEY,
   process.env.STREAM_PRIVATE_API_KEY
@@ -27,7 +28,8 @@ const TOKEN_USER_ID_MAP = new Map();
         return res.status(400).send("User ID taken");
       }
 
-      await streamChat.upsertUser({ id, name, image });
+      const data = await streamChat.upsertUser({ id, name, image });
+      console.log(data);
     }
   );
 
