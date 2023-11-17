@@ -1,8 +1,10 @@
 import { config } from "dotenv";
+import cors from "cors";
 import express from "express";
 import userRoutes from './routes/users.js'
 config();
 const App = express();
+App.use(cors());
 App.use(express.json({ limit: "10mb" }));
 App.use('/',userRoutes)
 App.get("/", async (req, res) => {
