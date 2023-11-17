@@ -19,6 +19,7 @@ const TOKEN_USER_ID_MAP = new Map();
     "/signup",
     async (req, res) => {
       const { id, name, image } = req.body;
+      console.log(req.body);
       if (id == null || id === "" || name == null || name === "") {
         return res.status(400).send()
       }
@@ -28,8 +29,10 @@ const TOKEN_USER_ID_MAP = new Map();
         return res.status(400).send("User ID taken");
       }
 
-      const data = await streamChat.upsertUser({ id, name, image });
-      console.log(data);
+       await streamChat.upsertUser({ id, name, image });
+
+       res.status(200).send('ok');
+    
     }
   );
 
