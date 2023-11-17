@@ -21,7 +21,7 @@ const TOKEN_USER_ID_MAP = new Map();
       const { id, name, image } = req.body;
       console.log(req.body);
       if (id == null || id === "" || name == null || name === "") {
-        return res.status(400).send()
+        return res.status(400).send("Invalid request")
       }
 
       const existingUsers = await streamChat.queryUsers({ id });
